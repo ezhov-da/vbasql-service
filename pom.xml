@@ -118,12 +118,13 @@
                 <plugin>
                     <groupId>org.wildfly.plugins</groupId>
                     <artifactId>wildfly-maven-plugin</artifactId>
-                    <version>1.0.2.Final</version>
+                    <version>1.2.2.Final</version>
                     <configuration>
-                        <hostname>${hostname}</hostname>
-                        <port>${port}</port>
-                        <username>${username}</username>
-                        <password>${password}</password>
+                        <hostname>${wildfly.hostname}</hostname>
+                        <port>${wildfly.port}</port>
+                        <username>${wildfly.username}</username>
+                        <password>${wildfly.password}</password>
+                        <protocol>remote+https</protocol>
                     </configuration>
                 </plugin>
             </plugins>

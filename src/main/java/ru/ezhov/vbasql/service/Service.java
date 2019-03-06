@@ -3,12 +3,7 @@ package ru.ezhov.vbasql.service;
 import ru.ezhov.vba.SqlCutOff;
 import ru.ezhov.vba.VbaGeneration;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -19,6 +14,20 @@ public class Service {
     public Response info() {
         return Response.ok().header("Access-Control-Allow-Origin", "*").entity("All good").build();
     }
+
+    @OPTIONS
+    @Path("/toSql")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response toSql(){
+        return Response
+                .ok()
+                .header("Access-Control-Allow-Headers", "x-requested-with")
+                .header("Access-Control-Allow-Method", "POST")
+                .header("Access-Control-Allow-Origin", "*")
+                .build();
+    }
+
 
     @POST
     @Path("/toSql")
@@ -41,6 +50,19 @@ public class Service {
             toSqlResponse = new ToSqlResponse("Ошибка при обработке запроса: \n" + e.getMessage());
             return Response.serverError().header("Access-Control-Allow-Origin", "*").entity(toSqlResponse).build();
         }
+    }
+
+    @OPTIONS
+    @Path("/toVba")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response toVba(){
+        return Response
+                .ok()
+                .header("Access-Control-Allow-Headers", "x-requested-with")
+                .header("Access-Control-Allow-Method", "POST")
+                .header("Access-Control-Allow-Origin", "*")
+                .build();
     }
 
     @POST
